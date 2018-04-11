@@ -730,8 +730,10 @@ namespace AppProject
         private void R_DisplaySelections(object sender, BICEventArgs e)
         {
             selectedBIC = e.bic;
-            billPosition = bills.IndexOf(selectedBIC.billControl.billLogic);
-            this.S_BillUniformGrid.Children.RemoveAt(billPosition);
+            selectedBIC.billControl.billLogic.s_BillView.IsEnabled = false;
+            selectedBIC.billControl.billLogic.s_BillView.Opacity = 0.5;
+
+
             this.BillSelectionGrid.Visibility = Visibility.Visible;
 
             //Temporary Solutions to disable too many instances
@@ -756,7 +758,7 @@ namespace AppProject
             };
             this.S_BillUniformGrid.Effect = myDropShadow;
             
-            this.R_ReviewTitle.Text = "Split " + selectedBIC.itemName +  " with...";
+            this.R_ReviewTitle.Text = "Split " + selectedBIC.ItemName.Text +  " with...";
 
         }
 
@@ -1034,7 +1036,8 @@ namespace AppProject
             {
                 bill.s_BillView.Unselect();
             }
-            this.S_BillUniformGrid.Children.Insert(billPosition, bills[billPosition].s_BillView);
+            selectedBIC.billControl.billLogic.s_BillView.IsEnabled = false;
+            selectedBIC.billControl.billLogic.s_BillView.Opacity = 1;
             selectedBills.Clear();
         }
 
@@ -1070,7 +1073,8 @@ namespace AppProject
                 bill.s_BillView.Unselect();
             }
 
-            this.S_BillUniformGrid.Children.Insert(billPosition, bills[billPosition].s_BillView);
+            selectedBIC.billControl.billLogic.s_BillView.IsEnabled = true;
+            selectedBIC.billControl.billLogic.s_BillView.Opacity = 1;
             selectedBills.Clear();
         }
 
