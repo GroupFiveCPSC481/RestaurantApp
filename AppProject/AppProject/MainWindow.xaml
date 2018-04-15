@@ -769,7 +769,7 @@
             <TextBlock x:Name="statusText" FontFamily="Century Gothic" FontSize="22px" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="56.182,211.4,0,0" Height="39.6" Width="205" TextAlignment="Center" Foreground="#FFF30D0D"/>
         </Grid>
         <Grid x:Name="DisplayMoreInfoGrid" Margin="310.8,116.6,449.2,138.4" Grid.ColumnSpan="2" Height="725" Width="860" d:IsHidden="True"/>
-        <Grid x:Name="BillDisplayGrid" Width="400" Grid.ColumnSpan="2" VerticalAlignment="Center" MinHeight="132">
+        <Grid x:Name="BillDisplayGrid" Width="400" Grid.ColumnSpan="2" VerticalAlignment="Center" MinHeight="132" d:IsHidden="True">
             <Grid x:Name="ToolBarGrid" Height="20" Width="400" VerticalAlignment="Top" Background="#FF858585">
                 <Button x:Name="CloseButton" Content="" HorizontalAlignment="Right" Width="20" Height="40" VerticalAlignment="Top" Click="Close_BillDisplayGrid" Style="{DynamicResource ButtonStyle12}" Background="#FFDC2F2F" BorderBrush="#FFDC2F2F" Margin="0,0,0,-20.762"/>
 
