@@ -25,7 +25,7 @@ namespace AppProject
     {
         //List of active bills
         List<Bill> bills = new List<Bill>();
-        
+
         //List of ordered foods (Must be present on a bill to in this list
         List<FoodItem> orderedFoods = new List<FoodItem>();
 
@@ -33,7 +33,7 @@ namespace AppProject
         List<Bill> selectedBills = new List<Bill>();
         private int numDinners = 0;
         private int billPosition;
- 
+
         private Boolean addMode = false;
         private Boolean serverMode = false;
         FoodItem selectedItem;
@@ -41,7 +41,7 @@ namespace AppProject
         Grid selectedMenu = null;
         ScrollViewer selectedMenuItems = null;
         Rectangle selectedMenuCover;
-       
+
 
         public MainWindow()
         {
@@ -108,7 +108,7 @@ namespace AppProject
                     this.Menu_Kids_uniform_grid.Children.Add(menuItems);
                 else if (File.Exists(@"Images\Drinks\" + itemName + ".jpg"))
                     this.Menu_Drink_uniform_grid.Children.Add(menuItems);
-               else if (File.Exists(@"Images\Appetizers\" + itemName + ".png"))
+                else if (File.Exists(@"Images\Appetizers\" + itemName + ".png"))
                     this.Menu_items_uniform_gird.Children.Add(menuItems);
                 else if (File.Exists(@"Images\Entrees\" + itemName + ".png"))
                     this.Menu_Entrees_uniform_grid.Children.Add(menuItems);
@@ -128,7 +128,7 @@ namespace AppProject
             this.R_UpdateSendButtonStatus();
         }
 
-        private void RemoveItemOrder(object sender, ItemEventArgs e) 
+        private void RemoveItemOrder(object sender, ItemEventArgs e)
         {
             e.item.Empty -= new EventHandler<ItemEventArgs>(RemoveItemOrder);
             orderedFoods.Remove(e.item);
@@ -381,7 +381,7 @@ namespace AppProject
             {
                 EventHandler<EventArgs> DeBlurThings = new EventHandler<EventArgs>(M_DeBlur);
                 DeBlurThings.Invoke(this, new EventArgs());
-                
+
                 this.DisplayMoreInfoGrid.IsEnabled = true;
 
                 AddItemsPromptGrid.Visibility = Visibility.Hidden;
@@ -465,7 +465,8 @@ namespace AppProject
             if (billPosition == BillDisplayGrid.Children.Count)
             {
                 this.R_BillUniformGrid.Children.Add(bc);
-            } else
+            }
+            else
             {
                 this.R_BillUniformGrid.Children.Insert(billPosition, bc);
             }
@@ -503,6 +504,7 @@ namespace AppProject
             this.selectedMenuCover.Effect = myDeBlurEffect;
             this.M_ReviewOrderButton.Effect = myDeBlurEffect;
             this.ReviewGrid.Effect = myDeBlurEffect;
+            this.M_BillScroller.Effect = myDeBlurEffect;
 
             this.M_ReviewOrderButton.IsEnabled = true;
             this.M_CategoryGrid.IsEnabled = true;
@@ -511,6 +513,7 @@ namespace AppProject
             this.selectedMenuItems.IsEnabled = true;
             this.selectedMenuCover.IsEnabled = true;
             this.ReviewGrid.IsEnabled = true;
+            this.M_BillScroller.IsEnabled = true;
         }
 
         private void AddItems_Click(object sender, RoutedEventArgs e)
@@ -550,7 +553,8 @@ namespace AppProject
             {
                 R_SendButton.Opacity = 1;
                 R_SendButton.IsEnabled = true;
-            } else
+            }
+            else
             {
                 R_SendButton.Opacity = 0.5;
                 R_SendButton.IsEnabled = false;
@@ -563,8 +567,8 @@ namespace AppProject
             {
                 bill.ToggleItemDragging();
                 bill.billView.ToggleItemDeletability();
-            }       
-            
+            }
+
             this.R_TransitionButtonGrid.Visibility = Visibility.Hidden;
             this.R_EditButtonsGrid.Visibility = Visibility.Hidden;
             this.R_BillA_DGrid.Visibility = Visibility.Hidden;
@@ -611,9 +615,9 @@ namespace AppProject
                 }
             }
             this.R_EditButtonsGrid.Visibility = Visibility.Visible;
-                this.R_BillA_DGrid.Visibility = Visibility.Visible;
-                this.R_MoveButtonsGrid.Visibility = Visibility.Hidden;
-                             
+            this.R_BillA_DGrid.Visibility = Visibility.Visible;
+            this.R_MoveButtonsGrid.Visibility = Visibility.Hidden;
+
         }
 
         private void R_SplitButton_Click(object sender, RoutedEventArgs e)
@@ -637,7 +641,7 @@ namespace AppProject
                     bill.billView.PaidForButton.Visibility = Visibility.Hidden;
                 }
             }
-            
+
         }
 
         private void R_FinishSplitButton_Click(object sender, RoutedEventArgs e)
@@ -671,7 +675,7 @@ namespace AppProject
             this.R_EditButtonsGrid.Visibility = Visibility.Visible;
             this.R_BillA_DGrid.Visibility = Visibility.Visible;
             this.R_SplitButtonsGrid.Visibility = Visibility.Hidden;
-            
+
         }
 
         private void R_SendButton_Click(object sender, RoutedEventArgs e)
@@ -747,7 +751,7 @@ namespace AppProject
             this.R_BillScroller.IsEnabled = false;
             //this.ReviewGrid.Effect = myBlurEffect;
 
-           // this.ReviewGrid.IsEnabled = false;
+            // this.ReviewGrid.IsEnabled = false;
 
             DropShadowEffect myDropShadow = new DropShadowEffect
             {
@@ -757,8 +761,8 @@ namespace AppProject
                 Color = Colors.Black
             };
             this.S_BillUniformGrid.Effect = myDropShadow;
-            
-            this.R_ReviewTitle.Text = "Split " + selectedBIC.ItemName.Text +  " with...";
+
+            this.R_ReviewTitle.Text = "Split " + selectedBIC.ItemName.Text + " with...";
 
         }
 
@@ -769,7 +773,7 @@ namespace AppProject
                 bill.billView.ToggleBillDeleteButton();
                 bill.billView.ToggleItemDeletability();
             }
-            
+
             this.R_EditButtonsGrid.Visibility = Visibility.Hidden;
             this.R_TransitionButtonGrid.Visibility = Visibility.Hidden;
             this.R_BillA_DGrid.Visibility = Visibility.Hidden;
@@ -790,7 +794,7 @@ namespace AppProject
             {
                 this.R_TransitionButtonGrid.Visibility = Visibility.Visible;
                 S_clear_table_button.Visibility = Visibility.Hidden;
-                S_exit_server_mode.Visibility = Visibility.Hidden;      
+                S_exit_server_mode.Visibility = Visibility.Hidden;
                 this.R_ReviewTitle.Text = "Review Bills";
             }
             else
@@ -799,10 +803,10 @@ namespace AppProject
                 this.S_clear_table_button.Visibility = Visibility.Visible;
                 this.S_exit_server_mode.Visibility = Visibility.Visible;
             }
-            this.R_EditButtonsGrid.Visibility = Visibility.Visible;     
+            this.R_EditButtonsGrid.Visibility = Visibility.Visible;
             this.R_BillA_DGrid.Visibility = Visibility.Visible;
             this.R_DButtonsGrid.Visibility = Visibility.Hidden;
-            
+
         }
 
         //Add New Bill button
@@ -882,6 +886,7 @@ namespace AppProject
             this.selectedMenuCover.IsEnabled = false;
             this.M_ReviewOrderButton.IsEnabled = false;
             this.ReviewGrid.IsEnabled = false;
+            this.M_BillScroller.IsEnabled = false;
 
             BlurEffect myBlurEffect = new BlurEffect
             {
@@ -895,6 +900,7 @@ namespace AppProject
             this.selectedMenuCover.Effect = myBlurEffect;
             this.M_ReviewOrderButton.Effect = myBlurEffect;
             this.ReviewGrid.Effect = myBlurEffect;
+            this.M_BillScroller.Effect = myBlurEffect;
         }
 
         private void S_enter_click(object sender, RoutedEventArgs e)
@@ -939,8 +945,8 @@ namespace AppProject
             S_exit_server_mode.Visibility = Visibility.Visible;
             foreach (Bill bill in bills)
             {
-      
-                
+
+
                 bill.billView.PaidForButton.Visibility = Visibility.Visible;
 
                 if (bill.transactionCompleted)
@@ -1061,7 +1067,7 @@ namespace AppProject
                 Color = Colors.Black
             };
             this.S_BillUniformGrid.Effect = myUnDropShadow;
-            
+
             this.R_ReviewTitle.Text = "Click which food item to split";
 
             //Spliting Logic here
@@ -1096,7 +1102,7 @@ namespace AppProject
             ReviewScroller = false;
             MenuScroller = false;
             SplitItemsScroller = false;
-            
+
 
             if (R_BillScroller.IsMouseDirectlyOver)
             {
@@ -1121,7 +1127,7 @@ namespace AppProject
                 scrollStartPoint = e.GetPosition(this);
                 scrollStartOffset.X = selectedMenuItems.HorizontalOffset;
                 scrollStartOffset.Y = selectedMenuItems.VerticalOffset;
-                
+
                 this.Cursor = (selectedMenuItems.ExtentWidth > selectedMenuItems.ViewportWidth) ||
                     (selectedMenuItems.ExtentHeight > selectedMenuItems.ViewportHeight) ?
                     Cursors.ScrollAll : Cursors.Arrow;
@@ -1224,7 +1230,7 @@ namespace AppProject
 
         private void ResetStateButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
             MainWindow nWindow = new MainWindow();
             nWindow.Show();
             nWindow.MurderAndReplace(this);
