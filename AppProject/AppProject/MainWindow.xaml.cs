@@ -1042,7 +1042,7 @@ namespace AppProject
             {
                 bill.s_BillView.Unselect();
             }
-            selectedBIC.billControl.billLogic.s_BillView.IsEnabled = false;
+            selectedBIC.billControl.billLogic.s_BillView.IsEnabled = true;
             selectedBIC.billControl.billLogic.s_BillView.Opacity = 1;
             selectedBills.Clear();
         }
